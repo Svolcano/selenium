@@ -37,6 +37,7 @@ class DB(object):
             all_ret = self.cursor.fetchall()
             return all_ret;
         except Exception as e:
+            print e
             return None
         
     def excutemany(self, sql, arg):
@@ -61,13 +62,7 @@ class DB(object):
             pass
 
 if __name__ == "__main__":
-    a = u'哈拉雷'
-    print a
-    a = a.encode('utf-8')
-    print a
-    sql = 'INSERT INTO test(NAME) VALUES(%s)'
-    v =[(a)]
     db = DB()
-    print db.excutemany(sql, v)
+    print db.query()
     db.close()   
         
