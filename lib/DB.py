@@ -10,10 +10,10 @@ class DB(object):
     _db_def = 'test_check'
     _db_port = 3306
     #===========================================================================
-    # _db_host = 'localhost'
-    # _db_user = 'root'
-    # _db_pwd = '.'
-    # _db_def = 'test_db'
+    # _db_host = '192.168.11.206'
+    # _db_user = 'sboxweb'
+    # _db_pwd = 'Sbox123456xZ'
+    # _db_def = 'sbox_db'
     # _db_port = 3306
     #===========================================================================
     def __init__(self):
@@ -23,6 +23,7 @@ class DB(object):
                                         passwd=DB._db_pwd,
                                         db=DB._db_def,
                                         port=DB._db_port,
+                                        charset='utf8'
                                         )
             self.cursor = self.conn.cursor(cursor=pymysql.cursors.DictCursor)
         except Exception as e:
@@ -60,8 +61,12 @@ class DB(object):
             pass
 
 if __name__ == "__main__":
-    sql = 'INSERT INTO test(id,NAME) VALUES(%s,%s)'
-    v =[(2,'1'),[3,'1']]
+    a = u'哈拉雷'
+    print a
+    a = a.encode('utf-8')
+    print a
+    sql = 'INSERT INTO test(NAME) VALUES(%s)'
+    v =[(a)]
     db = DB()
     print db.excutemany(sql, v)
     db.close()   
